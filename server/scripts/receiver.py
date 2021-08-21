@@ -10,6 +10,9 @@ async def recv_file():
 
     async with websockets.connect(uri) as websocket:
 
+        # msg = await websocket.recv()
+        # print(msg)
+
         transfer_info = json.loads(await websocket.recv())
         print(transfer_info)
 

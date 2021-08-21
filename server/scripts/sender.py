@@ -10,6 +10,8 @@ async def send_file(file):
 
     async with websockets.connect(uri) as websocket:
 
+        # await websocket.send("Helloo")
+
         transfer_info = {
             "filename": file,
             "frame_count": math.ceil(os.path.getsize(file) / (1024 * 1024)),
@@ -19,14 +21,14 @@ async def send_file(file):
         await websocket.send(json.dumps(transfer_info))
 
 
-        with open(file, "rb") as f:
-            frame = f.read((1024 * 1024))
-            while frame:
-                print("Sending frame")
-                await websocket.send(frame)
-                frame = f.read((1024 * 1024))
+        # with open(file, "rb") as f:
+        #     frame = f.read((1024 * 1024))
+        #     while frame:
+        #         print("Sending frame")
+        #         await websocket.send(frame)
+        #         frame = f.read((1024 * 1024))
 
-        print("Done Sending")
+        # print("Done Sending")
         # transfer_info = json.loads(await websocket.recv())
         # print(transfer_info)
 

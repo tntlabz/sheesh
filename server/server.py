@@ -31,7 +31,7 @@ async def echo(websocket, path):
     connected.add(websocket)
 
     async for message in websocket:
-        async for ws in connected:
+        for ws in connected:
             if ws is websocket: continue
             await ws.send(message)
 
