@@ -1,14 +1,27 @@
-import socket
+import os, math, asyncio, json, time
+import websockets
 
-s = socket.socket(socket.AF_INET, socket.SOCK_STREAM)
 
-print(socket.gethostname())
+async def recv_file():
 
-s.bind(("94.134.180.1", 1337))
-s.listen(5)
+    # das "wss://" am anfang sorgt dafür, dass der server weiss, dass man ne verbindung aufbauen will
+    # es gibt auch "ws://", das ist quasi wie http und https, wss ist irgendwie sicherer.
+    uri = "wss://sheesh-server.herokuapp.com/0.0.0.0"
 
-while True:
-    clientsocket, address = s.accept()
-    print(f"Connection from {address} has been established!")
+    async with websockets.connect(uri) as websocket:
 
-    clientsocket.send(bytes("Welcome to the server", "utf-8"))
+        transfer_info = json.loads(await websocket.recv())
+        print(transfer_info)
+
+        fn_parts = transfer_info["filename"].split(".")
+        fn_parts[-2] += "-recv"
+        file_name = ".".join(fn_parts)
+
+        with open(file_name, "wb") as f:
+            for _ in range(transfer_info["frame_count"]):
+                print("Writing frame")
+                f.write(await websocket.recv())
+
+
+
+asyncio.get_event_loop().run_until_complete(recv_file())
