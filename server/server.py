@@ -29,6 +29,7 @@ async def echo(websocket, path):
     # binärdaten schicken können
 
     connected.add(websocket)
+    print(connected)
     print("new connected client")
 
     async for message in websocket:
@@ -38,6 +39,7 @@ async def echo(websocket, path):
 
     print("disconnected client")
     connected.remove(websocket)
+    print(connected)
 
 # das wird in echtzeit in die logs geschrieben, sehr hilfreich
 print(f"Websocket Server ready, listening on port {os.environ['PORT']}")
