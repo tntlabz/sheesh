@@ -1,4 +1,5 @@
 import os, math, asyncio, json, time
+from datetime import datetime
 import websockets
 
 
@@ -16,6 +17,8 @@ async def recv_file():
         transfer_info = json.loads(await websocket.recv())
         print(transfer_info)
 
+        t0 = datetime.now()
+
         fn_parts = transfer_info["filename"].split(".")
         fn_parts[-2] += "-recv"
         file_name = ".".join(fn_parts)
@@ -24,6 +27,8 @@ async def recv_file():
             for _ in range(transfer_info["frame_count"]):
                 print("Writing frame")
                 f.write(await websocket.recv())
+
+        print((datetime.now() - t0))
 
 
 

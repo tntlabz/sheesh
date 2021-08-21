@@ -1,6 +1,7 @@
 import os, math, asyncio, json, time
 import websockets
 
+FRAME_SIZE = 1024 * 1024
 
 async def send_file(file):
 
@@ -14,19 +15,19 @@ async def send_file(file):
 
         transfer_info = {
             "filename": file,
-            "frame_count": math.ceil(os.path.getsize(file) / (1024 * 1024)),
+            "frame_count": math.ceil(os.path.getsize(file) / FRAME_SIZE),
         }
         print(transfer_info)
 
         await websocket.send(json.dumps(transfer_info))
 
-
-        # with open(file, "rb") as f:
-        #     frame = f.read((1024 * 1024))
-        #     while frame:
-        #         print("Sending frame")
-        #         await websocket.send(frame)
-        #         frame = f.read((1024 * 1024))
+        with open(file, "rb") as f:
+            frame = f.read(FRAME_SIZE)
+            while frame:
+                print("Sending frame")
+                await websocket.send(frame)
+                print("Frame sent")
+                frame = f.read(FRAME_SIZE)
 
         # print("Done Sending")
         # transfer_info = json.loads(await websocket.recv())
