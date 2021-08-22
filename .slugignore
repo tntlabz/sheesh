@@ -1,0 +1,8 @@
+
+*
+
+!server/*
+
+# !Procfile
+# !requirements.txt
+# !runtime.txt

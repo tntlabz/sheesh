@@ -14,6 +14,9 @@ muss davor ein `web:`, es gibt aber auch andere wie zb `worker:`, falls du das m
 solltest. Nach dem Prefix kommt dann ein normaler cmd command, hier jetzt  
 zb `python3 /app/server/server.py`.
 
+* `.slugignore`
+Spezifiziert welche Dateien nicht auf Heroku hochgeladen werden, wie eine `.gitignore`.
+
 
 # "Dynos"
 
