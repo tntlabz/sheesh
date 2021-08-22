@@ -17,9 +17,9 @@ zb `python3 /app/server/server.py`.
 
 # "Dynos"
 
-* Prozesse, die auf Heroku mit der Procfile automatisch gestartet werden, können im Dashboard  
+* ...sind Prozesse, die auf Heroku mit der Procfile automatisch gestartet werden. Sie können im Dashboard  
 deaktiviert/reaktiviert werden. Wenn sie laufen und 30min keine Aktivität zeigen, werden sie  
-in den Schlafmodus versetzt und brauchen kurz bis sie wieder online sind wenn in der zeit  
+in den Schlafmodus versetzt und brauchen kurz bis sie wieder online sind, wenn in der Zeit  
 jemand eine anfrage schickt. Sind sie nicht aus oder im Schlafmodus, verbrauchen sie das  
 Budget von 550 Stunden das man monatlich hat.
 
