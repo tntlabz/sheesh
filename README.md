@@ -1,7 +1,5 @@
 # Heroku
 
-
-
 * `runtime.txt`  
 Hier steht die Python Version drin, falls irgendwelche Module nicht mit 3.9 funktionieren.
 
@@ -16,8 +14,17 @@ muss davor ein `web:`, es gibt aber auch andere wie zb `worker:`, falls du das m
 solltest. Nach dem Prefix kommt dann ein normaler cmd command, hier jetzt  
 zb `python3 /app/server/server.py`.
 
-# Server-Client Kommunikation
 
+# "Dynos"
+
+* Prozesse, die auf Heroku mit der Procfile automatisch gestartet werden, können im Dashboard  
+deaktiviert/reaktiviert werden. Wenn sie laufen und 30min keine Aktivität zeigen, werden sie  
+in den Schlafmodus versetzt und brauchen kurz bis sie wieder online sind wenn in der zeit  
+jemand eine anfrage schickt. Sind sie nicht aus oder im Schlafmodus, verbrauchen sie das  
+Budget von 550 Stunden das man monatlich hat.
+
+
+# Server-Client Kommunikation
 
 * Alles an Kommunikation muss über Websockets laufen, ausser wir wollen Flask verwenden   
 und rausfinden wie da Websockets funktionieren
@@ -29,11 +36,13 @@ je nachdem wie gut das bei heroku geht, oder in der cloud auf so nem MongoDB Ser
 sodass man richtige Chats hat mit dateien die dann dort immer sind und mehrfach gedownloadet werden können. Oder wenn das zuviel Platz kostet, dass man die da für einen Tag speichern  
 kann und dann werden sie automatisch gelöscht
 
+
 ## Registrierung
 
 * Ein neuer User sollte eine Registrierungs-Message schicken können  
 (an die Sub-URL `/register`) mit Passwort, username und eventuell email  
 (falls man mal pw-resets einbinden will).
+
 
 ## "Anmeldung" beim App-Start
 
@@ -46,6 +55,7 @@ Die sollte immer aufrecht erhalten werden, bis das Skript geschlossen wird.
 * Ist die Verbindungsinfo korrekt, wird (am besten in nem hash mit username als key)  
 der Socket zum Zurückschicken abgespeichert.
 
+
 ## Datentransfer
 
 * Der Sender sendet eine Infonachricht (mit empfänger, dateiname, dateigröße, etc),  
@@ -53,7 +63,6 @@ dass er jetzt an username X senden will. Der Server schaut nun ob der user onlin
 
 * Hat der Empfänger angenommen, wird nun vom Sender die Datei verschickt, der Server  
 leitet die einfach weiter.
-
 
 
 
