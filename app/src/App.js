@@ -6,7 +6,7 @@ import Login from './pages/login'
 
 const App = () => {
 
-    const [authenticated, setauthenticated] = useState(false);
+    const [authenticated, setAuthenticated] = useState(false);
 
     return (
         <>
