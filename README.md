@@ -73,3 +73,4 @@ leitet die einfach weiter.
 
 * [Websockets Dokumentation](https://websockets.readthedocs.io/en/stable/)
 * [MongoDB für Python](https://www.mongodb.com/languages/python)
+* [Async input python](https://gist.github.com/delivrance/675a4295ce7dc70f0ce0b164fcdbd798)

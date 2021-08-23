@@ -3,6 +3,6 @@
 
 !server/*
 
-# !Procfile
-# !requirements.txt
-# !runtime.txt
+!Procfile
+!requirements.txt
+!runtime.txt
