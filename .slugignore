@@ -1,8 +1,12 @@
+app/
+README.md
+img.exr
 
-*
 
-!server/*
+# *
 
-!Procfile
-!requirements.txt
-!runtime.txt
+# !server/*
+
+# !Procfile
+# !requirements.txt
+# !runtime.txt
