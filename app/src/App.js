@@ -1,7 +1,7 @@
-import React, { useState } from 'react'
+import React, { useState } from 'react';
 
-import Home from './pages/home'
-import Login from './pages/login'
+import Home from './pages/home/Home';
+import Login from './pages/login/Home';
 
 
 const App = () => {
