@@ -5,5 +5,10 @@ contextBridge.exposeInMainWorld("electron", {
         sendNotification(message) {
             ipcRenderer.send("notify", message);
         }
+    },
+    ipc: {
+        send(channel, data) {
+            ipcRenderer.send(channel, data);
+        }
     }
 })

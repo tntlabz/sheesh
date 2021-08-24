@@ -1,99 +1,269 @@
+@import url(../../mixins.less);
+
+
 .loginWrapper {
-    width: 100vw;
-    height: 100vh;
     display: grid;
     place-items: center;
-
-    background: url("https://images.hdqwalls.com/download/1/geometry-abstract-minimalism-0x-1600x900.jpg");
-    background-size: cover;
+ 
 }
 
 .loginForm {
 
-    
+    &:before {
+        z-index: -1;
+        content: "";
+        position: absolute;
+        bottom: 75%;
+        right: 0;
 
-    background: rgba(214, 214, 214, 0.2);
-    border-top: 2px solid rgba(220,220,220,0.2);
-    border-left: 1px solid rgba(220,220,220,0.2);
+        border-radius: 50%;
 
-    box-shadow: 12px 4px 10px rgba(0,0,0,0.2);
+        width: 200px;
+        height: 140px;
+
+        background-color: rgba(var(--orange-), 20%);
+        filter: blur(80px);
+    }
+    &:after {
+        z-index: -1;
+        content: "";
+        position: absolute;
+        bottom: 25%;
+        left: 0;
+        
+        border-radius: 50%;
+
+        width: 100px;
+        height: 140px;
+        
+        background-color: rgba(var(--orange-), 20%);
+        filter: blur(50px);
+    }
+
+    .glass();
+    .drop-shadow();
+
+
     
-    
-    backdrop-filter: blur(60px);
-    
-    width: min(50%, 400px);
+    width: 400px;
     height: min(80%, 600px);
 
     display: flex;
     flex-direction: column;
-    // place-items: center;
     align-items: center;
     justify-content: center;
 
     border-radius: 20px;
 
     .title {
+        color: var(--orange);
+
         font-size: 40px;
-        color: #dddddd;
-        // height: 80px;
-        font-weight: bold;
-        margin-bottom: 20px;
+        font-weight: 700;
+
+        margin-bottom: 50px;
         text-align: center;
+
     }
     
     .inputField {
-        padding: 5px;
         display: flex;
         flex-direction: column;
         align-items: left;
         width: 80%;
+        position: relative;
 
-        & > label {
-            font-size: 12px;
-            color: #dddddd;
-
-            margin: 2px 10px;
-        }
 
         & > input {
-            height: 30px;
-            border: none;
-            padding: 20px 10px;
+            height: 40px;
+
+            padding: 0 10px;
             border-radius: 10px;
             outline: none;
 
-            background: rgba(200,200,200,0.5);
-            color: white;
+            .glass();
+            .drop-shadow(10px, 15%);
 
-            font-size: 16px;
-            font-weight: bold;
+            background: none;
+
+            color: var(--dark-grey);
+
+            font-size: 14px;
+            font-weight: 500;
+
+            transition: padding 100ms ease;
+
+            &:active, &:focus {
+                padding: 0 15px;
+            }
 
             &::placeholder {
-                color: rgba(255, 255, 255, 0.7);
+                color: rgba(var(--black-), 40%);
             }
+
+            &::selection {
+                color: var(--white);
+                background: var(--orange);
+            }
+        }
+
+        .inputIcon {
+            height: 25px;
+            position: absolute;
+            right: 10px;
+            top: 50%;
+            transform: translateY(-50%);
+
+            fill: var(--grey);
         }
     }
 
     .inputField + .inputField {
-        margin-top: 10px;
+        margin-top: 20px;
     }
 
     .buttonWrapper {
-        margin-top: 20px !important;
+        margin-top: 40px !important;
         display: grid;
         place-items: center;
+        width: 80%;
+        position: relative;
+    }
+    .remembermeWrapper {
+        margin-top: 20px;
+        height: 25px;
+        width: 80%;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        position: relative;
+
+        
+        & input {
+            -webkit-appearance: none;
+            -moz-appearance: none;
+            -o-appearance: none;
+            appearance: none;
+            cursor: pointer;
+            // background: #f00;
+            position: absolute;
+            // outline: none;
+
+            width: 100%;
+            height: 100%;
+            z-index: 2;
+        }
+
+        & input:checked + div {
+            background: rgba(var(--orange-), 80%);
+        }
+
+        & input:hover + div {
+            filter: brightness(120%);
+        }
+        
+
+        & > div {
+            .glass();
+            .drop-shadow(10px, 5%);
+
+            width: 25px;
+            height: 25px;
+            margin-right: 10px;
+
+            transition: filter 100ms ease;
+
+            display: grid;
+            place-items: center;
+
+            & .icon {
+                height: 18px;
+            }
+
+            &:hover {
+                filter: brightness(120%);
+            }
+        }
+
+        & > span {
+
+            color: var(--darker-grey);
+
+        }
     }
 
     .loginButton {
         border: none;
-        padding: 10px 0;
         border-radius: 10px;
-        width: 70%;
+        width: 100%;
+        outline: none;
 
-        color: #ffffff;
-        font-size: 20px;
+        display: grid;
+        place-items: center;
+
+        height: 40px;
+
+        color: var(--dark-grey);
+        // font-size: 16px;
         font-weight: bold;
 
-        background: #e13b78;
+        left: 50%;
+
+        .drop-shadow(10px, 15%);
+        .glass();
+
+        background: rgba(var(--orange-), 80%);
+
+        transition: width 100ms ease,
+                    filter 100ms ease;
+
+        &:hover, &:focus {
+            filter:brightness(120%);
+        }
+
+        & > span {
+            font-size: 25px;
+        }
+
+        
+        .loginIcon {
+            height: 40px;
+            width: 40px;
+            font-size: 40px !important;
+        }
+        
+        &.loading {
+            width: 30%;
+            animation: pulsing 0.9s ease infinite;
+            animation-delay: 0.2s;
+            // .loginIcon {
+            //     animation: rotating 1s linear infinite;
+            //     height: 30px;
+            // }
+        }
+    }
+
+    .signUp {
+        margin-top: 20px;
+        font-size: 14px;
+
+        & > a {
+            color: var(--darker-grey);
+            text-decoration: underline;
+            cursor: pointer;
+
+            transition: color 30ms ease;
+
+            &:hover {
+                color: var(--orange);
+            }
+        }
+    }
+
+    .formInfo {
+        position: absolute;
+        bottom: 10px;
+        color: var(--grey);
+        font-size: 12px;
     }
 }

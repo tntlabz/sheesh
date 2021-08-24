@@ -1,35 +1,53 @@
 @import url('https://fonts.googleapis.com/css2?family=Noto+Sans+JP:wght@100;300;400;500;700;900&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Rubik:wght@300;400;500;600;700;800&display=swap');
+
+:root {
+    --purple: #8D4A95;
+    --orange: #F79226;
+
+    --black: #0F1015;
+    --darker-grey: #15171E;
+    --dark-grey: #1d2029;
+    --grey: #262A36;
+    --light-grey: #353A4B;
+    --lighter-grey: #484F65;
+    --white: #dce0ee;
+
+    --purple-: 141, 74, 149;
+    --orange-: 247, 146, 38;
+
+    --black-: 15, 16, 21;
+    --darker-grey-: 21, 23, 30;
+    --dark-grey-: 29, 32, 41;
+    --grey-: 38, 42, 54;
+    --light-grey-: 53, 58, 75;
+    --lighter-grey-: 72, 79, 101;
+    --white-: 220, 224, 238;
+
+    --top-bar-height: 30px;
+}
 
 * {
     margin: 0;
     padding: 0;
     box-sizing: border-box;
-    font-family: "Noto Sans JP", sans-serif;
+    font-family: "Rubik", "Noto Sans JP", sans-serif;
 }
 
-body {
-    background: #191919;
+#root {
+    background: var(--black);
     height: 100vh;
+    width: 100vw;
+
+    display: grid;
+    grid-template-rows: var(--top-bar-height) auto;
+
+    background-image:#1d2029;
+    background-image:
+        radial-gradient(at 61% 88%, hsla(231,22%,23%,1) 0, transparent 57%),  
+        radial-gradient(at 83% 20%, hsla(231,14%,17%,1) 0, transparent 51%),  
+        radial-gradient(at 94% 28%, hsla(245,13%,18%,1) 0, transparent 44%),  
+        radial-gradient(at 99% 84%, hsla(231,12%,28%,1) 0, transparent 56%),  
+        radial-gradient(at 38% 0%, hsla(232,15%,26%,1) 0, transparent 59%),  
+        radial-gradient(at 17% 85%, hsla(230,14%,19%,1) 0, transparent 46%);
 }
-
-h1 {
-    color: #54c54a;
-}
-
-// button {
-//     font-size: 16px;
-//     margin: 0;
-//     border: none;
-//     padding: 1rem;
-//     border-radius: 0.3rem;
-//     font-weight: bolder;
-
-//     box-shadow: 0 5px 5px rgba(0, 0, 0, 0.7);
-
-//     transition: box-shadow 100ms ease;
-
-// }
-
-// button:hover {
-//     box-shadow: 0 5px 20px rgba(0,0,0,1);
-// }

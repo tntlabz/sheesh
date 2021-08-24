@@ -5,7 +5,7 @@ const isDev = !app.isPackaged;
 
 
 winPreferences = {
-    // frame: false,
+    frame: false,
     background: "transparent",
     webPreferences: {
         nodeIntegration: false,
