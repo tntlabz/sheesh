@@ -3,21 +3,48 @@ import asyncio, time, sys, sysconfig, pymongo
 from ipc import recv_msg, send_msg
 
 
+def get_user_collection():
+    CONNECTION_STRING = sysconfig.get_config_var("MONGODB_URI")
+    client = pymongo.MongoClient(CONNECTION_STRING)
+    db = client["users"]
+    collection = db["user_collection"]
+    return collection
+
+def check_usr(username, password):
+    users = get_user_collection().find()
+    for usr in users:
+        if usr["username"] == username:
+            send_msg("user exists")
+            if usr["password"] == password:
+                send_msg("correct password")
+                
+            else:
+                send_msg("incorrect password")
+                return
+    send_msg("username not found")
+
+def new_usr(username, password):
+    users = get_user_collection().find()
+    for usr in users:
+        if usr["username"] == username:
+            send_msg("username already exists")
+            return
+    
+    if len(password) < 8:
+        send_msg("password to short")
+        return
+    user = {"username" : username, "password": password}
+    get_user_collection().insert_one(user)
+    send_msg("new user accepted")
+
+
 # gets username & password from console
 if sys.argv[0] == __file__:
     username, password = sys.argv[1:]
 else:
     username, password = sys.argv[0:]
 
-
-# create DB connection
-CONNECTION_STRING = sysconfig.get_config_var("MONGODB_URI")
-client = pymongo.MongoClient(CONNECTION_STRING)
-db = client["users"]
-collection = db["user_collection"]
-user = {"username" : username, "password": password}
-collection.insert_one(user)
-
+check_usr(username, password)
 
 async def listen_for_input():
     while True:
