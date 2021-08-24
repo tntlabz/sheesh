@@ -11,3 +11,8 @@ Hier stehen paar Nachrichten die main.py dem js schickt:
     "username already exists"   --> Benutzername gibt es schon
     "password to short"         --> Password weniger als 8 Zeichen
     "new user accepted"         --> Benutzer akzeptiert
+
+{
+    "type": "login",
+    "data": 
+}
