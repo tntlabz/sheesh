@@ -1,7 +1,11 @@
 const { app, BrowserWindow, ipcMain, Notification } = require("electron");
 const path = require("path");
 
+const { db } = require("./scripts/db.js");
+
 const isDev = !app.isPackaged;
+
+
 
 
 winPreferences = {
@@ -14,8 +18,8 @@ winPreferences = {
         preload: path.join(__dirname, "preload.js")
 
     },
-    width: 1000,
-    height: 580
+    width: 850,
+    height: 700
 }
 
 
@@ -26,6 +30,7 @@ app.on("ready", () => {
 
   mainWindow.loadURL(`file://${__dirname}/src/index.html`)
   
+
 
   mainWindow.on("closed", () => app.quit())
 
