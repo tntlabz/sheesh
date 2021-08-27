@@ -4,4 +4,4 @@ __pycache__/
 
 .env
 
-build/
+build/*
