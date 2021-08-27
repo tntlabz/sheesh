@@ -1,7 +1,7 @@
 const { app, BrowserWindow, ipcMain, Notification } = require("electron");
 const path = require("path");
 
-const { db } = require("./scripts/db.js");
+// const { db } = require("./scripts/db.js");
 
 const isDev = !app.isPackaged;
 
