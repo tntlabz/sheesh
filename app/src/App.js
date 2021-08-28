@@ -7,23 +7,39 @@ import Login from './pages/login/Login';
 
 const App = () => {
 
-    const [authenticated, setAuthenticated] = useState(false);
-    const [user, setUser] = useState({
-        username: "",
-        password: "",
-        id: null,
-        createdAt: ""
+    const [appState, setAppState] = useState({
+        authenticated: false,
+        user: {
+            username: "",
+            password: "",
+            id: null,
+            createdAt: ""
+        },
+        page: "login"
     });
     
 
-    const loginUser = () => {
+    const loginUser = (user) => {
         
+    }
+    const registerUser = (user) => {
+        
+    }
+
+    const showPage = (page) => {
+        setAppState({
+            ...appState,
+            page: page
+        });
     }
 
     return (
         <>
             <TitleBar />
-            { authenticated ? <Home /> : <Login authenticated={authenticated} /> }
+            {appState.page==="login" && <Login loginUser={loginUser} />}
+            {appState.page==="signup" && <Signup registerUser={registerUser} />}
+            {appState.page==="home" && <Home />}
+            {appState.page==="settings" && "Settings"}
         </>
     )
 }
