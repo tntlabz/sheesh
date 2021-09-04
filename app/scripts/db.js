@@ -7,7 +7,7 @@ class DB {
         const app = express();
         const dbURI = process.env.MONGODB_URI
         mongoose.connect(this.dbURI)
-            then((result) => app.listen(3000);)
+            then((result) => app.listen(3000))
     }
 
 

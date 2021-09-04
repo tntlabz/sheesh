@@ -38,6 +38,14 @@ app.on("ready", () => {
     new Notification({title: "Notification!", body: message}).show();
   })
 
+  // TODO - Connect db functions to events
+  ipcMain.on("db:login", (e, user) => {
+    setTimeout(() => e.sender.send("db:login", {user}), 2000)
+  })
+  ipcMain.on("db:register", (e, user) => {
+    setTimeout(() => e.sender.send("db:register", {error: "Something went wrong."}), 2000)
+  })
+
 
   ipcMain.on("shell:showfile", (e, path) => {
     let exp = spawn("explorer.exe", ["/select,", path]);

@@ -3,6 +3,7 @@ import TitleBar from './components/TitleBar/TitleBar';
 
 import Home from './pages/home/Home';
 import Login from './pages/login/Login';
+const db = electron.db;
 
 
 const App = () => {
@@ -11,20 +12,13 @@ const App = () => {
         authenticated: false,
         user: {
             username: "",
+            email: "",
             password: "",
             id: null,
             createdAt: ""
         },
         page: "login"
     });
-    
-
-    const loginUser = (user) => {
-        
-    }
-    const registerUser = (user) => {
-        
-    }
 
     const showPage = (page) => {
         setAppState({
@@ -36,8 +30,7 @@ const App = () => {
     return (
         <>
             <TitleBar />
-            {appState.page==="login" && <Login loginUser={loginUser} />}
-            {appState.page==="signup" && <Signup registerUser={registerUser} />}
+            {appState.page==="login" && <Login showPage={showPage} />}
             {appState.page==="home" && <Home />}
             {appState.page==="settings" && "Settings"}
         </>

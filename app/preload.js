@@ -13,13 +13,27 @@ contextBridge.exposeInMainWorld("electron", {
     },
     db: {
         login(user) {
-            ipcRenderer.send("user:login", user);
+            
+            return new Promise((resolve, reject) => {
+                ipcRenderer.send("db:login", user);
+                ipcRenderer.once("db:login", (e, res) => {
+                    if(res.error) reject(res.error);
+                    resolve(res);
+                })
+            })
         },
         logout() {
             ipcRenderer.send("user:logout");
         },
         register(user) {
-            ipcRenderer.send("user:register", user);
+
+            return new Promise((resolve, reject) => {
+                ipcRenderer.send("db:register", user);
+                ipcRenderer.once("db:register", (e, res) => {
+                    if(res.error) reject(res.error);
+                    resolve(res);
+                })
+            })
         }
     }
 })

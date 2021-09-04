@@ -7,7 +7,7 @@ import { SyncAltRounded, RemoveRounded, Crop54Rounded, CloseRounded } from "@mat
 // const { ipcRenderer } = require("electron");
 
 const TitleBar = () => {
-    console.log(electron)
+
     return (
         <div className="titleBar">
             <div className="appInfo">
