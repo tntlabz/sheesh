@@ -1,0 +1,49 @@
+NodeJS REST API mit express.js
+- hat verschiedene verfügbare funktionen, die zb mit der datenbank agieren
+- Weiss als einzigstes Programm die Datenbank Zugangsdaten
+
+Funktionen ( ausgeführt durch http requests an den server )
+
+POST /register
+    Validiert Username und Passwort, speichert den neuen User in der Datenbank ab
+    und generiert API-Token und Refresh-Token und sendet Antwort mit tokens & user
+
+POST /login
+    Überprüft Username und Passwort, generiert API-Token und Refresh-Token
+    und sendet Antwort mit tokens & user
+
+GET /user/:id      ( braucht API-Token )
+    sendet User (ohne sensible infos)
+    oder Error bei falschem Token
+
+GET /user/:id/refresh      ( braucht API-Token )
+    Generiert neue Tokens
+
+POST /user/:id      ( braucht API-Token )
+    Updated den User in der Datenbank
+    Error wenn Anfrage nicht von dem User kommt, der verändert wird
+
+GET /chat/:id      ( braucht API-Token )
+
+
+POST /chat/:id      ( braucht API-Token )
+
+
+TOKENS:
+    API-Token: Token, mit dem die API-Funktionen verwenden kann. Wird beim Login generiert und
+    ist nur für eine begrenzte Zeit gültig. (überprüft durch Timestamp in den Datenbank)
+
+    Refresh-Token: Token, das verwendet werden kann um ein neues API-Token & Refresh-Token zu erhalten
+    ohne username & passwort zu verwenden. Länger verwendbar als das API-Token.
+
+    Die Tokens werden zufällig? generiert und in der Datenbank für jeden User gespeichert
+
+Sicherheit:
+    Durch die nur kurzzeitig geltenden API-Tokens wird der mögliche Schaden bei geleakten Tokens
+    minimiert.
+
+    Mögliche Sicherheitsverbesserung:
+        Der Server hat ein RSA-Keypair, dessen public key unter zb /public_key erreicht werden kann.
+        clients verschlüsseln ihre nachrichten an den server mit diesem key als AES-Passwort.
+
+        Wenn der Server etwas zurücksenden muss, muss der client ein Passwort mitschicken, das der Server zum verschlüsseln der Antwort benutzt.

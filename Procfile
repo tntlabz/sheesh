@@ -1,1 +1,1 @@
-web: python3 /app/server/server.py
+web: node /app/server/server.js

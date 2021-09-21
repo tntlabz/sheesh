@@ -1,0 +1,21 @@
+{
+  "name": "sheesh-server",
+  "version": "1.0.0",
+  "description": "",
+  "main": "./server/server.js",
+  "scripts": {
+    "start": "node ./server/server.js"
+  },
+  "keywords": [],
+  "author": "tntlabz",
+  "license": "ISC",
+  "dependencies": {
+    "bufferutil": "^4.0.3",
+    "express": "^4.17.1",
+    "utf-8-validate": "^5.0.5",
+    "ws": "^8.2.2"
+  },
+  "engines": {
+    "node": "14.x"
+  }
+}
