@@ -17,7 +17,7 @@ const App = () => {
             id: null,
             createdAt: ""
         },
-        page: "login"
+        page: "home"
     });
 
     const showPage = (page) => {
