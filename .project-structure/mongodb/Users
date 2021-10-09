@@ -1,0 +1,9 @@
+User:
+    _id: int
+    userName: str
+    password: str (hash)
+
+    userImage: str
+
+    apiToken: str
+    rfrToken: str

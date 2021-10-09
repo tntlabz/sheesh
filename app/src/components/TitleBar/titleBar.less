@@ -1,0 +1,59 @@
+@import url(../../mixins.less);
+
+.titleBar {
+    height: var(--top-bar-height);
+    width: 100%;
+    background-color: var(--darker-grey);
+
+    display: flex;
+    align-items: center;
+
+    & .appInfo {
+        color: var(--lighter-grey);
+        font-size: 13px;
+        font-weight: 700;
+        padding: 0 10px;
+
+        display: flex;
+        align-items: center;
+
+        .appIcon {
+            height: 20px;
+            margin-right: 5px;
+            // margin-top: 4px;
+        }
+    }
+
+    & .dragArea {
+        -webkit-app-region: drag;
+        flex-grow: 1;
+        height: calc(var(--top-bar-height) - 5px);
+        margin-top: 5px;
+    }
+
+    .windowButtons {
+        height: var(--top-bar-height);
+        display: flex;
+        justify-content: flex-end;
+        
+        button {
+            height: var(--top-bar-height);
+            background: none;
+            border: none;
+            width: 30px;
+
+            .windowIcon {
+                fill: var(--lighter-grey);
+
+                &.maximize {
+                    height: 21px;
+                }
+            }
+        }
+
+    }
+
+    & button {
+        height: var(--top-bar-height);
+    }
+}
