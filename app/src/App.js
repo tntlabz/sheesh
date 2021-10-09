@@ -3,7 +3,11 @@ import TitleBar from './components/TitleBar/TitleBar';
 
 import Home from './pages/home/Home';
 import Login from './pages/login/Login';
-const db = electron.db;
+
+import ws from "./util/socket";
+
+
+const AppContext = React.createContext();
 
 
 const App = () => {
@@ -17,8 +21,22 @@ const App = () => {
             id: null,
             createdAt: ""
         },
-        page: "home"
+        page: "login"
     });
+
+    function register(data) {
+        ws.send({
+            type: "register",
+            ...data
+        });
+        ws.once("register", data => {
+            setAppState({
+                ...appState,
+                authenticated: true,
+                user: data.user
+            });
+        });
+    }
 
     const showPage = (page) => {
         setAppState({
@@ -30,7 +48,9 @@ const App = () => {
     return (
         <>
             <TitleBar />
-            {appState.page==="login" && <Login showPage={showPage} />}
+            <AppContext.Provider value={register}>
+                {appState.page==="login" && <Login showPage={showPage} />}
+            </AppContext.Provider>
             {appState.page==="home" && <Home />}
             {appState.page==="settings" && "Settings"}
         </>

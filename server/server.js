@@ -1,36 +1,95 @@
+/*
+TODO:
+- Handle Users connecting from two places simultaneosly
+- Handle Users spamming, over-creation of sessionTokens
+- add periodic cleanup of tokens
+- add tokens.renew()
+- Set up Listeners for messages in the users chats
+- more checks when updating user / handling friends
+
+*/
+
+
+// Modules
 const express = require("express");
 const { Server } = require("ws");
-const path = require("path");
+
+const mongoose = require("mongoose");
+
+
+// Custom Client Class
+const WSClient = require("./util/wsclient");
+
+// WebSocket Message Handlers
+const auth = require("./handlers/auth");
+const user = require("./handlers/user");
+const chat = require("./handlers/chat");
+
+
+
+
+process.env.MONGODB_URI = "mongodb+srv://tntlabz:teentee31415@sheesh-server-db.xh4mw.mongodb.net/sheesh?retryWrites=true&w=majority"
+
+// MongoDB Setup
+mongoose.connect(
+    process.env.MONGODB_URI,
+    { useNewUrlParser: true, useUnifiedTopology: true },
+    (err) => {
+        if (!err) {
+            console.log("Successfully connected to MongoDB.");
+        } else {
+            console.log("MongoDB Error:", err.codeName, `(${err.code})`);
+        }
+    }
+)
+
+
+// Setup WebServer & WebSocket
 const PORT = process.env.PORT || 3000;
 
-
 const app = express();
-
 const server = app.listen(PORT, () => console.log(`Server listening on port ${PORT}`));
 const wss = new Server({ server });
 
 
-app.use("/.well-known/pki-validation", express.static(path.join(__dirname, "ssl-auth")));
 
-
+// Homepage
 app.get("/", (req,res) => {
     console.log("Homepage requested");
     res.status(200).sendFile("./website/index.html", {root: __dirname});
 });
 
-wss.on("connection", ws => {
-    console.log("Client connected");
-    console.log(ws);
-    console.log(ws.constructor.name);
-    ws.on("message", messageHandler);
-    ws.on("close", () => console.log("Client disconnected"));
-});
 
-const messageHandler = buffer => {
-    try {
-        const msg = JSON.parse(String(buffer))
-        console.log(msg);
-    } catch (e) {
-        console.log("Invalid message.", e)
-    }
-}
+
+// WebSocket Connections
+wss.on("connection", ws => {
+
+    const client = new WSClient(ws);
+
+    // Auth
+    client.on("register", auth.register);
+    client.on("login", auth.login);
+    client.on("reconnect", auth.reconnect);
+
+    // User
+    client.on("updateUser", user.updateUser, "authorized");
+    // * getUser
+    // * searchUser
+    
+    // Friends
+    client.on("addFriend", user.addFriend, "authorized");
+    client.on("acceptFriend", user.acceptFriend, "authorized");
+    client.on("removeFriend", user.removeFriend, "authorized");
+
+    // Chat
+    // * createChat
+    // * updateChat
+    // * deleteChat
+
+    // * sendMessage
+    // * deleteMessage
+
+    // File
+    // * sendFile
+
+});
