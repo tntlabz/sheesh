@@ -47,3 +47,7 @@ Sicherheit:
         clients verschlüsseln ihre nachrichten an den server mit diesem key als AES-Passwort.
 
         Wenn der Server etwas zurücksenden muss, muss der client ein Passwort mitschicken, das der Server zum verschlüsseln der Antwort benutzt.
+
+
+getUser ( id/username ) => { user }
+getChat ( id ) =>

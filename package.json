@@ -4,14 +4,19 @@
   "description": "",
   "main": "./server/server.js",
   "scripts": {
-    "start": "node ./server/server.js"
+    "start": "node ./server/server.js",
+    "client": "node -r ./server/tests/client.js",
+    "db": "node -r ./server/tests/db.js",
+    "app": "cd ./app && npm run build && npm start"
   },
   "keywords": [],
   "author": "tntlabz",
   "license": "ISC",
   "dependencies": {
+    "bcrypt": "^5.0.1",
     "bufferutil": "^4.0.3",
     "express": "^4.17.1",
+    "mongoose": "^6.0.7",
     "utf-8-validate": "^5.0.5",
     "ws": "^8.2.2"
   },
