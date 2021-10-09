@@ -1,4 +1,4 @@
-import React, { useState } from 'react'
+import React, { useState, useContext } from 'react'
 
 import { PersonRounded, EmailRounded, ArrowRightAltRounded, VpnKeyRounded, DoneRounded } from '@material-ui/icons';
 
@@ -6,6 +6,8 @@ import "./login.less";
 import ThreeDotSpinner from '../../components/ThreeDotSpinner/ThreeDotSpinner';
 
 const db = electron.db;
+
+import AppContext from "../../App";
 
 
 const Login = (props) => {
@@ -17,7 +19,8 @@ const Login = (props) => {
         email: "",
         password: "",
         rememberme: false
-    })
+    });
+    const register = useContext(AppContext);
 
 
     const loginUser = async (e) => {
@@ -44,15 +47,17 @@ const Login = (props) => {
 
         setLoading(true);
         console.log("start register");
+
+        register(state);
         
-        try {
-            const res = await db.register(state);
-            console.log("got user", res);
-            setLoading(false);
-            setNeedsAccount(false);
-        } catch(e) {
-            console.log(e);
-        }     
+        // try {
+        //     const res = await db.register(state);
+        //     console.log("got user", res);
+        //     setLoading(false);
+        //     setNeedsAccount(false);
+        // } catch(e) {
+        //     console.log(e);
+        // }     
     }
 
     const stateChanged = (e) => {

@@ -4,8 +4,8 @@
   "description": "",
   "main": "main.js",
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1",
     "start": "electron .",
+    "build": "webpack --config webpack.common.js",
     "watch": "webpack --config webpack.common.js --watch"
   },
   "author": "tntlabz",
