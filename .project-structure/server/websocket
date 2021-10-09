@@ -1,0 +1,5 @@
+Server-Websocket (Python oder JS)
+(entweder als subprocess der api oder als separater Server)
+- User kann sich mit dem Websocket verbinden und ihm dabei sagen, welchen Chats er angehört.
+- User bekommt Nachrichten in Echtzeit wenn jemand eine neue Nachricht in einem der Chats schreibt
+- User kann Dateien in Echtzeit senden, die an alle Chatmitglieder verteilt werden

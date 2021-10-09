@@ -1,0 +1,6 @@
+Chat:
+    members: Array
+    messages: Array
+        from: userId
+        text: str
+        file: str

@@ -17,6 +17,8 @@
 import asyncio, os
 import websockets
 
+connected = set()
+
 # die funktion wird immer aufgerufen wenn ne neue verbindung angefragt wird
 # websocket is der socket vom verbinder, path ist der urlzusatz, also
 # wenn du zb auf wss://sheesh-server.herokuapp.com/0.0.0.0/test gehst,
@@ -25,8 +27,19 @@ async def echo(websocket, path):
 
     # keine ahnung wie das zeug hier funktioniert, müssen uns halt iwas überlegen dass wir hier
     # binärdaten schicken können
+
+    connected.add(websocket)
+    print(connected)
+    print("new connected client")
+
     async for message in websocket:
-        await websocket.send(message)
+        for ws in connected:
+            if ws is websocket: continue
+            await ws.send(message)
+
+    print("disconnected client")
+    connected.remove(websocket)
+    print(connected)
 
 # das wird in echtzeit in die logs geschrieben, sehr hilfreich
 print(f"Websocket Server ready, listening on port {os.environ['PORT']}")

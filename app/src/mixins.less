@@ -1,0 +1,45 @@
+.glass(@radius: 10px) {
+    border: none;
+    background: linear-gradient(to right, rgba( 255, 255, 255, 0.22 ), rgba( 255, 255, 255, 0.08 ));
+    backdrop-filter: blur( 6.0px );
+    -webkit-backdrop-filter: blur( 6.0px );
+    border-radius: @radius;
+    border-top: 1px solid rgba( 255, 255, 255, 0.3);
+    border-left: 1px solid rgba( 255, 255, 255, 0.3);
+    // border-left: 1px solid rgba( 255, 255, 255, 0.18 );
+}
+
+.drop-shadow(@blur: 32px, @opacity: 40%) {
+    box-shadow: 0 8px @blur 0 rgba(var(--black-), @opacity);
+}
+
+@keyframes rotating {
+    from {
+      -ms-transform: rotate(0deg);
+      -moz-transform: rotate(0deg);
+      -webkit-transform: rotate(0deg);
+      -o-transform: rotate(0deg);
+      transform: rotate(0deg);
+    }
+    to {
+      -ms-transform: rotate(360deg);
+      -moz-transform: rotate(360deg);
+      -webkit-transform: rotate(360deg);
+      -o-transform: rotate(360deg);
+      transform: rotate(360deg);
+    }
+}
+
+@keyframes pulsing {
+    from {
+        filter: brightness(100%);
+    }
+
+    30% {
+        filter: brightness(110%);
+    }
+
+    60%, to {
+        filter: brightness(100%);
+    }
+}
