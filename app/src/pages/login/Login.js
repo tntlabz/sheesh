@@ -5,9 +5,8 @@ import { PersonRounded, EmailRounded, ArrowRightAltRounded, VpnKeyRounded, DoneR
 import "./login.less";
 import ThreeDotSpinner from '../../components/ThreeDotSpinner/ThreeDotSpinner';
 
-const db = electron.db;
+import { AppContext } from "../../App";
 
-import AppContext from "../../App";
 
 
 const Login = (props) => {
@@ -20,8 +19,9 @@ const Login = (props) => {
         password: "",
         rememberme: false
     });
-    const register = useContext(AppContext);
-
+    const value = useContext(AppContext);
+    console.log("Value: ", value);
+    const {register} = value;
 
     const loginUser = async (e) => {
         if (loading) return;

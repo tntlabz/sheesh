@@ -5,13 +5,14 @@ var eventHandlers = {};
 
 
 function send(data) {
-    this.ws.send(JSON.stringify(data));
+    ws.send(JSON.stringify(data));
 }
 
 
 // invokes all Event Handlers
-function _onMessage(data) {
+function _onMessage({data}) {
     const req = JSON.parse(String(data));
+    console.log(req);
 
     if (!(req.type in eventHandlers)) return;
 
@@ -35,6 +36,8 @@ function on(eventName, callback) {
 /** Remove an Event Handler */
 function off(eventName, callback) {
 
+    console.log("off:", eventName, eventHandlers)
+
     const index = eventHandlers[eventName].indexOf(callback);
 
     if(eventName in eventHandlers && index > -1) {
@@ -48,7 +51,7 @@ function once(eventName, callback) {
 
     function wrapper(...args) {
         callback(...args);
-        off(arguments.callee);
+        off(eventName, wrapper);
     }
 
     on(eventName, wrapper);

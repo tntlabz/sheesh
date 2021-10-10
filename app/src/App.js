@@ -7,7 +7,7 @@ import Login from './pages/login/Login';
 import ws from "./util/socket";
 
 
-const AppContext = React.createContext();
+export const AppContext = React.createContext();
 
 
 const App = () => {
@@ -29,11 +29,13 @@ const App = () => {
             type: "register",
             ...data
         });
-        ws.once("register", data => {
+        ws.once("register", (req, respond) => {
+            console.log("Setting state...", req.user)
             setAppState({
                 ...appState,
                 authenticated: true,
-                user: data.user
+                user: req.user,
+                page: "home"
             });
         });
     }
@@ -48,7 +50,7 @@ const App = () => {
     return (
         <>
             <TitleBar />
-            <AppContext.Provider value={register}>
+            <AppContext.Provider value={{register}}>
                 {appState.page==="login" && <Login showPage={showPage} />}
             </AppContext.Provider>
             {appState.page==="home" && <Home />}
@@ -57,5 +59,5 @@ const App = () => {
     )
 }
 
-export default App
+export { App }
 
