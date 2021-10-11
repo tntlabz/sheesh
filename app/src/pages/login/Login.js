@@ -5,11 +5,11 @@ import { PersonRounded, EmailRounded, ArrowRightAltRounded, VpnKeyRounded, DoneR
 import "./login.less";
 import ThreeDotSpinner from '../../components/ThreeDotSpinner/ThreeDotSpinner';
 
-import { AppContext } from "../../App";
+import ws from "../../util/socket";
 
 
 
-const Login = (props) => {
+const Login = () => {
 
     const [loading, setLoading] = useState(false);
     const [needsAccount, setNeedsAccount] = useState(true);
@@ -19,45 +19,29 @@ const Login = (props) => {
         password: "",
         rememberme: false
     });
-    const value = useContext(AppContext);
-    console.log("Value: ", value);
-    const {register} = value;
 
-    const loginUser = async (e) => {
-        if (loading) return;
+    const loginUser = (e) => {
         e.preventDefault();
-        
+        if (loading) return;
         setLoading(true);
-        console.log("start login");
-        
-        try {
-            const res = await db.login(state);
-            console.log("got user", res);
-            setLoading(false);
-            props.showPage("home");
-        } catch(e) {
-            console.log(e);
-        } 
 
+        console.log("start login");
+        ws.send({
+            type: "login",
+            ...state
+        });
     }
 
-    const registerUser = async (e) => {
+    const registerUser = (e) => {
         e.preventDefault();
         if (loading) return;
-
         setLoading(true);
-        console.log("start register");
 
-        register(state);
-        
-        // try {
-        //     const res = await db.register(state);
-        //     console.log("got user", res);
-        //     setLoading(false);
-        //     setNeedsAccount(false);
-        // } catch(e) {
-        //     console.log(e);
-        // }     
+        console.log("start register");
+        ws.send({
+            type: "register",
+            ...state
+        })
     }
 
     const stateChanged = (e) => {

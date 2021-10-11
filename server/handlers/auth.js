@@ -58,7 +58,7 @@ async function register(req, respond) {
         respond({
             user: other,
             sessionToken
-        });
+        }, "user");
 
     } catch (e) {
         respond(Error.ServerError);
@@ -92,7 +92,7 @@ async function login(req, respond) {
         respond({
             user: other,
             sessionToken
-        });
+        }, "user");
         
     } else {
         respond(Error.PasswordInvalid);
@@ -117,7 +117,7 @@ async function reconnect(req, respond) {
         respond({
             user: other,
             sessionToken
-        })
+        }, "user")
 
     } catch(e) {
         respond(Error.ServerError);

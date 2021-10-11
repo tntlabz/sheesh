@@ -22,7 +22,7 @@ class WSClient {
         if (!(req.type in this._eventHandlers)) return;
 
         for (const handler of this._eventHandlers[req.type]) {
-            handler.call(this, req, data => this.respond(Object.assign(data, { type: req.type })));
+            handler.call(this, req, (data, type) => this.respond(Object.assign(data, { type: type || req.type })));
         }
     }
 

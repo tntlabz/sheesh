@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import TitleBar from './components/TitleBar/TitleBar';
 
 import Home from './pages/home/Home';
@@ -6,8 +6,6 @@ import Login from './pages/login/Login';
 
 import ws from "./util/socket";
 
-
-export const AppContext = React.createContext();
 
 
 const App = () => {
@@ -21,43 +19,40 @@ const App = () => {
             id: null,
             createdAt: ""
         },
-        page: "login"
+        page: "home"
     });
 
-    function register(data) {
-        ws.send({
-            type: "register",
-            ...data
-        });
-        ws.once("register", (req, respond) => {
-            console.log("Setting state...", req.user)
+    useEffect(() => {
+        const callback = data => {
+            console.log("got user: ", data);
             setAppState({
                 ...appState,
                 authenticated: true,
-                user: req.user,
+                user: data.user,
                 page: "home"
             });
-        });
-    }
+        }
+        ws.on("user", callback);
 
-    const showPage = (page) => {
-        setAppState({
-            ...appState,
-            page: page
-        });
-    }
+        return () => { ws.off("user", callback) };
+    }, []);
+
+    // const showPage = (page) => {
+    //     setAppState({
+    //         ...appState,
+    //         page: page
+    //     });
+    // }
 
     return (
         <>
             <TitleBar />
-            <AppContext.Provider value={{register}}>
-                {appState.page==="login" && <Login showPage={showPage} />}
-            </AppContext.Provider>
-            {appState.page==="home" && <Home />}
+            {appState.page==="login" && <Login />}
+            {appState.page==="home" && <Home user={appState.user} />}
             {appState.page==="settings" && "Settings"}
         </>
     )
 }
 
-export { App }
+export default App
 

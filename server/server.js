@@ -63,6 +63,7 @@ app.get("/", (req,res) => {
 // WebSocket Connections
 wss.on("connection", ws => {
 
+    console.log("Client connected");
     const client = new WSClient(ws);
 
     // Auth
