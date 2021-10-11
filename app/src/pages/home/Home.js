@@ -11,22 +11,22 @@ const Home = ({user}) => {
             userPicture: "",
             messages: [
                 {text: "Hello!", file: "", from: "Tom"},
+                {text: "Eine lange Nachricht!", file: "", from: "Tom", fromMe:true},
+                {text: "Hello!", file: "", from: "Tom"},
+                {text: "Hello!", file: "", from: "Tom", fromMe:true},
+                {text: "Eine noch deutlich längere Nachricht... Seeeehr lang... Noch länger, hört nicht auf!", file: "", from: "Tom"},
                 {text: "Hello!", file: "", from: "Tom"},
                 {text: "Hello!", file: "", from: "Tom"},
+                {text: "Hello!", file: "", from: "Tom", fromMe:true},
+                {text: "test1234567890!", file: "", from: "Tom"},
                 {text: "Hello!", file: "", from: "Tom"},
                 {text: "Hello!", file: "", from: "Tom"},
+                {text: "awiluefgius!", file: "", from: "Tom"},
                 {text: "Hello!", file: "", from: "Tom"},
-                {text: "Hello!", file: "", from: "Tom"},
-                {text: "Hello!", file: "", from: "Tom"},
-                {text: "Hello!", file: "", from: "Tom"},
-                {text: "Hello!", file: "", from: "Tom"},
-                {text: "Hello!", file: "", from: "Tom"},
-                {text: "Hello!", file: "", from: "Tom"},
-                {text: "Hello!", file: "", from: "Tom"},
-                {text: "Hello!", file: "", from: "Tom"},
+                {text: "Heawoufhsddofhllo!", file: "", from: "Tom"},
                 {text: "Hello!", file: "", from: "Tom"},
                 {text: "Hello!", file: "", from: "Tim"},
-                {text: "Wazzup?", file: "", from: "Tom"},
+                {text: "Wazzup?", file: "", from: "Tom", fromMe:true},
                 {text: "u gud?", file: "", from: "Tom"},
                 {text: "ye-yeet! I really feel like writing an essay today. so how are you doing? I'm currently programming a sick chat app with javascript and react!", file: "", from: "Tim"},
             ]
@@ -67,25 +67,27 @@ const Contact = ({profilePicture, username, userInfo}) => {
     )
 }
 
-const Chat = ({username, profilePicture, messages}) => {
+const Chat = ({members, messages}) => {
     return (
         <>
             <div className="chatInfo">
-                <img src={profilePicture} />
-                <span className="username">{username}</span>
+                <img src="" />
+                <span className="username"></span>
             </div>
             <div className="chatWrapper">
                 {
                     messages.map(msg => {
+
+                        // const sender = members.filter()
+
                         return (
                             
-                            <>
-                                <div className="messageWrapper">
-                                    <div className={msg.fromMe ? "message fromMe" : "message"} >
-                                        {msg.text}
-                                    </div>
+                            <div className={msg.fromMe ? "messageWrapper fromMe" : "messageWrapper"} >
+                                <img src="" alt="" className="profilePicture" />
+                                <div className="message" >
+                                    {msg.text}
                                 </div>
-                            </>
+                            </div>
                         )
                     })
                 }
