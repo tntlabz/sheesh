@@ -12,7 +12,6 @@ function send(data) {
 // invokes all Event Handlers
 function _onMessage({data}) {
     const req = JSON.parse(String(data));
-    console.log(req);
 
     if (!(req.type in eventHandlers)) return;
 
@@ -35,8 +34,6 @@ function on(eventName, callback) {
 
 /** Remove an Event Handler */
 function off(eventName, callback) {
-
-    console.log("off:", eventName, eventHandlers)
 
     const index = eventHandlers[eventName].indexOf(callback);
 
