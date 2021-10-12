@@ -28,7 +28,8 @@ const chat = require("./handlers/chat");
 
 
 
-
+// Dev fix
+process.env.MONGODB_URI = require("./.env/mongodb_uri");
 
 
 // MongoDB Setup
