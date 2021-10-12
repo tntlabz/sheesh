@@ -19,7 +19,7 @@ const App = () => {
             id: null,
             createdAt: ""
         },
-        page: "home"
+        page: "login"
     });
 
     useEffect(() => {

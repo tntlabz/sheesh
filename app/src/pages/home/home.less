@@ -41,7 +41,7 @@
         width: 100%;
         max-height: calc(100vh - var(--top-bar-height) - var(--chat-info-height));
 
-        overflow-y: scroll;
+        overflow-y: auto;
     }
 
     .messageWrapper {
@@ -60,9 +60,20 @@
 
     }
 
-    // .messageWrapper + .messageWrapper .profilePicture {
-    //     // display: none;
-    // }
+    .messageWrapper.notFromMe + .messageWrapper.notFromMe {
+        .profilePicture {
+            display: none;
+        }
+        padding-left: 60px;
+        padding-top: 0;
+    }
+    .messageWrapper.fromMe + .messageWrapper.fromMe {
+        .profilePicture {
+            display: none;
+        }
+        padding-right: 60px;
+        padding-top: 0;
+    }
 
     .profilePicture {
         width: 40px;
@@ -83,5 +94,7 @@
         padding: 10px;
 
         .glass();
+        background: rgba(var(--white-), 0.2);
+        color: var(--white);
     }
 }

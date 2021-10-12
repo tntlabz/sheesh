@@ -4,7 +4,8 @@
   "description": "",
   "main": "./server/server.js",
   "scripts": {
-    "start": "node ./server/server.js",
+    "server": "node ./server/server.js",
+    "start": "wt.exe -d %cd%\\app --title webpack pwsh -command npm run watch ; sp -H -d %cd% --title server pwsh -command npm run server; sp --title app -d %cd%\\app pwsh -command npm start",
     "client": "node -r ./server/tests/client.js",
     "db": "node -r ./server/tests/db.js",
     "app": "cd ./app && npm run build && npm start"

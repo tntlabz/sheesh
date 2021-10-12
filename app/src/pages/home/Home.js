@@ -16,7 +16,7 @@ const Home = ({user}) => {
                 {text: "Hello!", file: "", from: "Tom", fromMe:true},
                 {text: "Eine noch deutlich längere Nachricht... Seeeehr lang... Noch länger, hört nicht auf!", file: "", from: "Tom"},
                 {text: "Hello!", file: "", from: "Tom"},
-                {text: "Hello!", file: "", from: "Tom"},
+                {text: "Hello!", file: "", from: "Tom", fromMe:true},
                 {text: "Hello!", file: "", from: "Tom", fromMe:true},
                 {text: "test1234567890!", file: "", from: "Tom"},
                 {text: "Hello!", file: "", from: "Tom"},
@@ -82,7 +82,7 @@ const Chat = ({members, messages}) => {
 
                         return (
                             
-                            <div className={msg.fromMe ? "messageWrapper fromMe" : "messageWrapper"} >
+                            <div className={msg.fromMe ? "messageWrapper fromMe" : "messageWrapper notFromMe"} >
                                 <img src="https://avatars.githubusercontent.com/u/71983360?v=4" alt="" className="profilePicture" />
                                 <div className="message" >
                                     {msg.text}

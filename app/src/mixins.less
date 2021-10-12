@@ -1,8 +1,8 @@
-.glass(@radius: 10px) {
+.glass(@radius: 10px, @blur: 6px) {
     border: none;
     background: linear-gradient(to right, rgba( 255, 255, 255, 0.22 ), rgba( 255, 255, 255, 0.08 ));
-    backdrop-filter: blur( 6.0px );
-    -webkit-backdrop-filter: blur( 6.0px );
+    backdrop-filter: blur( @blur );
+    -webkit-backdrop-filter: blur( @blur );
     border-radius: @radius;
     border-top: 1px solid rgba( 255, 255, 255, 0.3);
     border-left: 1px solid rgba( 255, 255, 255, 0.3);
