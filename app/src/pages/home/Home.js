@@ -83,7 +83,7 @@ const Chat = ({members, messages}) => {
                         return (
                             
                             <div className={msg.fromMe ? "messageWrapper fromMe" : "messageWrapper"} >
-                                <img src="" alt="" className="profilePicture" />
+                                <img src="https://avatars.githubusercontent.com/u/71983360?v=4" alt="" className="profilePicture" />
                                 <div className="message" >
                                     {msg.text}
                                 </div>
