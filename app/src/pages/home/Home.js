@@ -5,7 +5,7 @@ import "./home.less";
 const Home = ({user}) => {
 
     const [state, setState] = useState({
-        contacts: [{username:"Tom F", userInfo:"Hey im tom"}],
+        contacts: [{username:"Tom F", userInfo:"Hey, im writing you a very long message."}],
         currentChat: {
             recipient: "Tom",
             userPicture: "",
@@ -58,7 +58,7 @@ const Home = ({user}) => {
 const Contact = ({profilePicture, username, userInfo}) => {
     return (
         <div className="contact">
-            <img src={profilePicture} />
+            <img src="https://avatars.githubusercontent.com/u/71983360?v=4" />
             <div>
                 <span className="username">{username}</span>
                 <span className="info">{userInfo}</span>

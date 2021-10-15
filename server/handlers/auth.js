@@ -28,7 +28,7 @@ async function register(req, respond) {
         return;
     }
     // check if username is valid
-    if(!username.match(/^(?=.+[a-z])[^\._][a-zA-Z0-9_.]{2,20}$/)) {
+    if(!username.match(/^(?=.+[a-z])[a-zA-Z][a-zA-Z0-9_.]{2,20}$/)) {
         respond(Error.UsernameInvalid);
         return;
     } else if (await User.findOne({ username })) {

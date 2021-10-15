@@ -8,12 +8,79 @@
 
 }
 .contacts {
+
+    
     // background: #888;
 
-    .glass(0);
+    .glass(0, 40px);
+    .drop-shadow(10px);
 
     border: none;
     // border-right: 1px solid var(--white);
+
+    .contact {
+        display: flex;
+        justify-content: flex-start;
+        align-items: center;
+        height: 60px;
+
+        display: grid;
+        grid-template-columns: 40px auto;
+
+        margin: 5px;
+        padding: 10px;
+
+        .glass();
+        .drop-shadow(5px, 10%);
+
+        &::after {
+            content: "";
+            position: absolute;
+            bottom: 12px;
+            left: 38px;
+    
+            min-width: 10px;
+            min-height: 10px;
+    
+            border-radius: 50%;
+    
+            background: var(--green);
+
+            box-shadow: 0 0 6px rgba(var(--black-), 0.8);
+        }
+
+        & img {
+            width: 40px;
+            height: 40px;
+            border-radius: 50%;
+            
+        }
+
+        & div {
+            height: 100%;
+
+            display: flex;
+            align-items: center;
+            justify-content: flex-start;
+
+            overflow: hidden;
+
+            .username {
+                color: var(--white);
+                margin: 0 10px;
+                white-space: nowrap;
+            }
+
+            .info {
+                color: rgba(var(--white-), 0.5);
+                overflow: hidden;
+                white-space: nowrap;
+                line-clamp: 1;
+                -webkit-line-clamp: 1;
+                text-overflow: ellipsis;
+            }
+        }
+    }
 }
 .chat {
     position: relative;
@@ -42,6 +109,11 @@
         max-height: calc(100vh - var(--top-bar-height) - var(--chat-info-height));
 
         overflow-y: auto;
+<<<<<<< Updated upstream
+=======
+
+        .scrollbar();
+>>>>>>> Stashed changes
     }
 
     .messageWrapper {
@@ -80,21 +152,29 @@
         height: 40px;
         margin-right: 10px;
         margin-left: 5px;
+
+        .drop-shadow(8px, 20%)
     }
 
 
     .message {
         min-height: 40px;
         max-width: 70%;
-        background: var(--white);
+        color: var(--white);
         border-radius: 5px;
-
+        
         display: flex;
         align-items: center;
         padding: 10px;
-
+        
         .glass();
+<<<<<<< Updated upstream
         background: rgba(var(--white-), 0.2);
         color: var(--white);
+=======
+        background: rgba(var(--black-), 40%);
+        border: none;
+        .drop-shadow(6px, 20%);
+>>>>>>> Stashed changes
     }
 }
